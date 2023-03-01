@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-api
+  labels:
+    app: students-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: students-api
+  template:
+    metadata:
+      labels:
+        app: students-api
+    spec:
+      containers:
+      - name: students-api
+        image: gcr.io/internship40/internship40-gke
+        ports:
+        - containerPort: 3000
+          hostPort: 3000
+      nodeSelector:
+        node-pool-type: primary-nodes
